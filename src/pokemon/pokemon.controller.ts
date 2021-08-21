@@ -11,6 +11,9 @@ import { PokemonService } from './pokemon.service';
 @Controller('pokemon')
 export class PokemonController {
   constructor(private pokemonService: PokemonService) {}
+  // define services as argument that are passed into the class constructor
+  // nest then uses this somehow
+  // and then all class methods have access to it
 
   @Get('basic') // type of call + any additional route prefix
   getBasic() {
@@ -64,8 +67,23 @@ export class PokemonController {
   }
 
   @Get()
-  async getOGPokemon() {
-    const result = await this.pokemonService.getPokemon();
+  async get20Pokemon() {
+    const result = await this.pokemonService.get20Pokemon();
+    return result;
+  }
+
+  @Get('search/:pokename')
+  async getPokemonByName(@Param('pokename') pokename: string) {
+    const result = await this.pokemonService.getPokemonByName(pokename);
+    return result;
+  }
+
+  @Get('filter')
+  async getPokemonByFilter(
+    @Query('type') type: string,
+    @Query('id') id: string,
+  ) {
+    const result = await this.pokemonService.getPokemonByFilter(type, id);
     return result;
   }
 }

@@ -34,4 +34,4 @@
 # Services/Providers -THE BRAIN 🧠
 - do all the heavy lifting/complex tasks
 - call services from methods in the controller
--
+- NOTE: fetch doesn't exist in node (TIL), which is why we use axios in backend
