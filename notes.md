@@ -59,10 +59,23 @@ export class PokemonModule {}
   - if in a class, class needs to `implements NestMiddleware` interface
   - if in a functional middleware
     - use when middleware doesnt need any dependencies
-    - 
 -  Put the middleware on a route path by putting it on the module when exporting said module `export class [ModuleName] implements NestModule`
 - then configure the middleware by passing in the `middlewareconsumer` helper function
   - what middleware function you're applying
   - what routes you're applying it to
   - what routes you want to exclude
   -
+
+
+# Other
+- #### Exceptions
+  - nest has built in exceptions, and if an HTTP exception is not explicitly handled, it does it for you w/ the built-in global exception filter
+  - only for HTTP exceptions, random exceptions like stupid typos return a generic error response
+- #### Pipes
+  - use pipes to transform/manipulate incoming requests and throw errors if the request is bad
+- #### Guards
+  - determine whether a req will be handled by the route handler or not (AKA AUTH)
+  - instead of checking auth conditions in middleware
+  - guards execute after each middleware
+  - Every guard must implement the `canActivate()` function and return a `boolean`
+  - the `ExecutionContext` ???????
