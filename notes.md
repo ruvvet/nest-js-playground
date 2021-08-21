@@ -13,9 +13,25 @@
 
 # Controller - THE BRAWN 💪
 - Routing Mechanism
+- basic setup is
+```
+  @Get //handler
+  methodName() : methodReturnInterface {
+      return datahere
+  }
+```
 - Controllers should handle HTTP requests.
-- `@Controller('[routeName]')` use the controller decorator to define the route
-- `@Get()`, `@Post()`, `@Put()`, `@Delete()` use basic HTTP req decorators to define the type of req
+- `@Controller('[routeName]')`
+  - use the controller decorator to define the route prefix
+  - applies to all routes in the controller
+- `@Get()`, `@Post()`, `@Put()`, `@Delete()`
+  - use basic HTTP req decorators to create a handler for each request type
 - `@Get('x')` to further define the route
+- then use other decorators like `@Param()` or `@Query()` or `@Body()` as tokens inside the method defined by the route
+- don't forget to add the class constructor in the controller to access the service/provider `  constructor(private pokemonService: PokemonService) {}`
+  - the `private` syntax shorthand allows us to both declare and initialize the service member immediately in the same location.
 
 # Services/Providers -THE BRAIN 🧠
+- do all the heavy lifting/complex tasks
+- call services from methods in the controller
+-

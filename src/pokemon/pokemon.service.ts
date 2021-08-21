@@ -1,12 +1,17 @@
 import { Injectable } from '@nestjs/common';
+import axios from 'axios';
 
 @Injectable()
 export class PokemonService {
   async getPokemon() {
-    const pokemon = await fetch('https://pokeapi.co/api/v2/');
-    if (!pokemon) {
+    const response = await axios({
+      method: 'get',
+      url: 'https://pokeapi.co/api/v2/pokemon',
+    });
+
+    if (!response) {
       return 'error';
     }
-    return pokemon.json();
+    return response.data;
   }
 }

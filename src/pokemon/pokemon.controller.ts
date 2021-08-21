@@ -10,11 +10,12 @@ import { PokemonService } from './pokemon.service';
 
 @Controller('pokemon')
 export class PokemonController {
-  @Get() // type of call
+  constructor(private pokemonService: PokemonService) {}
+
+  @Get('basic') // type of call + any additional route prefix
   getBasic() {
     // what happens when you call this route
     return 'POKEMON ZONE';
-    // const result = await PokemonService.getPokemon();
   }
 
   @Get('param/:pokename/:id') // using params
@@ -60,5 +61,11 @@ export class PokemonController {
   @Redirect('https://www.google.com', 301)
   getRedirect() {
     return null;
+  }
+
+  @Get()
+  async getOGPokemon() {
+    const result = await this.pokemonService.getPokemon();
+    return result;
   }
 }
